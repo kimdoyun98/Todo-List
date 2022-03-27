@@ -1,0 +1,57 @@
+{% extends 'todo_main/Todo_header.html' %}
+{% load bootstrap4 %}
+{% block main %}
+<head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        #todo-insert {
+            width: 1000px;
+            height: 40px;
+        }
+
+        .form-ToDo-create {
+            padding: 1em;
+        }
+
+        .delete-button {
+            position: relative;
+            top: 5px; left: 1020px;
+        }
+
+        .list-group {
+            position: relative;
+            bottom: 5px;
+        }
+
+        .delete-button {
+            position: absolute;
+            top: 70px; left: 1420px;
+            border: none;
+            background: none;
+        }
+    </style>
+</head>
+<div class="container">
+    <form action="/board/day/create/" method="post" class="form-ToDo-create">
+        <input type="text" id="todo-insert" class="fadeIn second" name="context" placeholder="입력">
+        <button class="add-button" type="submit"> 추가 </button>
+    </form>
+
+    <form action="/board/day/" method="post" class="form-ToDo-delete">
+    {% for task in task_list %}
+    <div class="list-group">
+        <li class="list-group-item"><input type="checkbox" name="todo-check" value={{task.id}}> {{ task.context }}</li>
+    </div>
+    {% endfor %}
+        <button class="delete-button" type="submit"><img src="https://previews.123rf.com/images/barks/barks1802/barks180200007/94805484-%ED%9C%B4%EC%A7%80%ED%86%B5-%EC%95%84%EC%9D%B4%EC%BD%98.jpg?fj=1"
+        height ="40" width="40"></button>
+    </form>
+
+
+</div>
+{% endblock main %}
