@@ -1,0 +1,26 @@
+{% extends 'todo_main/Todo_header.html' %}
+{% load static %}
+{% block main %}
+<head>
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Login Form -->
+    <form class="login_form" method="post" action="/sign/login/">
+      <input type="text" id="user_id" class="fadeIn second" name="user_id" placeholder="login">
+      <input type="password" id="user_pw" class="fadeIn third" name="user_pw" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="로그인">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
+  </div>
+</div>
+{% endblock main %}
+

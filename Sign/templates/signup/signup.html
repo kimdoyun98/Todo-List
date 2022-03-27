@@ -1,0 +1,21 @@
+{% extends 'todo_main/Todo_header.html' %}
+{% load static %}
+{% block main %}
+<head>
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+      <h1>Sign Up</h1>
+    <form class="signup" method="post" action="/sign/signup/">
+        <input class="signup-username" type="text" id="username" name="username" placeholder="이름">
+        <input class="signup-user_id" type="text" id="user_id" name="user_id" placeholder="아이디">
+        <input class="signup-user_pw" type="password" id="user_pw" name="user_pw" placeholder="비밀번호">
+
+      <input class="fadeIn fourth" type="submit" value="등록">
+    </form>
+    </div>
+</div>
+{% endblock main %}
