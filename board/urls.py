@@ -9,4 +9,5 @@ urlpatterns = [
     path('day/create/', views.day_create.as_view(), name="day_create_url"),
     path('sub/', views.sub.as_view()),
     path('sub/create/', views.sub_create.as_view(), name="sub_create_url"),
+    path('check/', views.check_homework.as_view(), name="check_url"),
 ]

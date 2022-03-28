@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 from .models import Main_Todo, Day_Todo, Sub_Todo
-
+from . import checking_homework
 
 class main(APIView):
     def get(self, request):
@@ -91,3 +91,42 @@ class sub_create(APIView):
         except:
             template_name = "todo_main/error.html"
             return render(request, template_name, {"msg": "로그인이 필요합니다."})
+
+
+class check_homework(APIView):
+    def get(self, request):
+        template_name = "check_homework/check.html"
+        return render(request, template_name)
+
+    def post(self, request):
+        user_id = request.data.get("user_id")
+        user_pw = request.POST.get("user_pw")
+        check = checking_homework.Checking_Homework()
+        homework_list = check.check_homework(user_id, user_pw)
+
+        titles = []
+        contexts = []
+        context = ""
+
+        for i in range(len(homework_list)):
+            titles.append(homework_list[i][0])
+            del homework_list[i][0]
+
+        for i in range(len(titles)):
+            title = []
+            title.append(titles[i])
+            contexts.append(title)
+
+        for i in range(len(homework_list)):
+            for j in range(1, len(homework_list[i])+1):
+                if j % 4 == 0:
+                    context = context + homework_list[i][j - 1] + " "
+                    contexts[i].append(context)
+                    context = ""
+                else:
+                    context = context + homework_list[i][j - 1] + " "
+        print(contexts)
+        template_name = "check_homework/check.html"
+        return render(request, template_name, {
+            'contexts': contexts,
+        })
