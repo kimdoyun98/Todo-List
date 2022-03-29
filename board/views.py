@@ -125,7 +125,7 @@ class check_homework(APIView):
                     context = ""
                 else:
                     context = context + homework_list[i][j - 1] + " "
-        print(contexts)
+
         template_name = "check_homework/check.html"
         return render(request, template_name, {
             'contexts': contexts,
