@@ -20,8 +20,16 @@ class Checking_Homework:
 
         # 데이터 추출
         homework_list = []
-        subject_numbers = ["10388", "12468", "12500", "12513", "12543"]
-        homework = ["c0", "c1", "c2", "c3"]
+
+        # 과목 번호 추출
+        subject_numbers = []
+        course_links = driver.find_elements_by_css_selector(".course_link")
+        for course_link in course_links:
+            href_link = course_link.get_attribute('href')
+            _, subject_number = href_link.split('=')
+            subject_numbers.append(subject_number)
+
+        # 과목 번호로 url 접속 후 과제 체크
         for number in subject_numbers:
             try:
                 # 과제 체크
