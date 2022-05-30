@@ -7,7 +7,7 @@ class main(APIView):
     def get(self, request):
         user_id = request.COOKIES.get('user_id')
         task_list = Main_Todo.objects.filter(user_id=user_id)
-
+        print(task_list)
         template_name = "todo_main/main_list.html"
         return render(request, template_name, {'task_list': task_list})
 
@@ -125,7 +125,7 @@ class check_homework(APIView):
                     context = ""
                 else:
                     context = context + homework_list[i][j - 1] + " "
-        print(contexts)
+
         template_name = "check_homework/check.html"
         return render(request, template_name, {
             'contexts': contexts,
